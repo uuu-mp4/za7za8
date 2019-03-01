@@ -11,8 +11,12 @@ def generate_iplist():
     results = fetch_ip_data()
     resfd=open('./result.txt','w+')
     for i in results:
-        #output:47.92.0.0-47.95.255.255
-        resfd.write("%s\n"%(IP("%s/%s"%(i[0],i[2])).strNormal(3)))
+        #output: 47.92.0.0-47.95.255.255
+        #resfd.write("%s\n"%(IP("%s/%s"%(i[0],i[2])).strNormal(3)))
+        #output: 47.92.0.0/255.255.0.0
+        #resfd.write("%s\n"%(IP("%s/%s"%(i[0],i[2])).strNormal(2)))
+        #output: 47.92.0.0/16
+        resfd.write("%s\n"%(IP("%s/%s"%(i[0],i[2])).strNormal(1)))
     resfd.close()
 
 def fetch_ip_data():
