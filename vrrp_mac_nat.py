@@ -7,6 +7,7 @@ import random
 macnum=45
 dstmac = []
 srcmac = []
+
 def build_rand_mac():
     '''生成一个随机MAC地址'''
     str1 = random.sample("0123456789ABCDEF",1)
