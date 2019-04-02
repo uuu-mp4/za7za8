@@ -1,3 +1,5 @@
+#!/usr/bin/python2.7
+# coding=utf-8
 import os
 import sys
 import random
@@ -6,6 +8,7 @@ macnum=45
 dstmac = []
 srcmac = []
 def build_rand_mac():
+    '''生成一个随机MAC地址'''
     str1 = random.sample("0123456789ABCDEF",1)
     str2 = random.sample("02468ACE",1)
     mac5 = []
@@ -14,10 +17,11 @@ def build_rand_mac():
     return ''.join(str1+str2)+':'+':'.join(mac5)
 
 for i in range(macnum):
+    '''生成一批MAC地址'''
     dstmac.append(build_rand_mac())
 
 for i in range(1,macnum+1):
-    srcmac.append("00:00:5E:00:01:"+str(i).zfill(2))
+    srcmac.append("00:00:5E:00:01:"+hex(i)[2:].zfill(2))
 
 print("/interface bridge nat remove [find ]\n/interface bridge nat")
 for i in range(macnum):
