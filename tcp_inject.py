@@ -6,6 +6,8 @@ import struct
 import threading
 from optparse import OptionParser
 
+'''TCP连接注入所需基本数据结构'''
+
 def checksum(data):
     s=0
     n=len(data)%2
