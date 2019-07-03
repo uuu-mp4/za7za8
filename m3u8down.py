@@ -1,12 +1,13 @@
 #!/usr/bin/python
-#coding: utf-8
+# -*- coding: utf-8 -*-
 from gevent import monkey
 monkey.patch_all()
 from gevent.pool import Pool
-
 import os
 import time
 import gevent
+import inspect
+import argparse
 import requests
 import urlparse
 
@@ -91,5 +92,11 @@ class Downloader:
             outfile.close()
 
 if __name__ == '__main__':
-    downloader = Downloader(50)
-    downloader.run('https://yingshi.1977zy-youku.com/ppvod/C9BF88A267088507207A0BDADC693E7E.m3u8', '/home/video/')
+    os.chdir(os.path.dirname(os.path.realpath(inspect.getfile(inspect.currentframe()))))
+    cmdline=argparse.ArgumentParser()
+    cmdline.add_argument('-n','--num',dest='num',type=int,default=10,help='并发连接数')
+    cmdline.add_argument('-u','--url',dest='url',type=str,required=True,help='m3u8视频URL')
+    cmdline.add_argument('-d','--dir',dest='dir',type=str,default='down',help='视频文件及分片保存目录')
+    cmdarg=cmdline.parse_args()
+    downloader=Downloader(cmdarg.num)
+    downloader.run(cmdarg.url,cmdarg.dir)
