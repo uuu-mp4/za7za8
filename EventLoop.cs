@@ -10,8 +10,7 @@ namespace TigerVPN
     {
         recv = 0x01,
         send = 0x02,
-        error = 0x04,
-        timeout = 0x08
+        error = 0x04
     }
 
     public interface IEventLoop
