@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
 
-namespace TigerVPN
+namespace Project
 {
     public enum IOMode : byte
     {
